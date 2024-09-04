@@ -1,0 +1,6 @@
+@proInstute.Api_HostAddress = http://localhost:5191
+
+GET {{proInstute.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
