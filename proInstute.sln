@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proInstute.Domian", "proInstute.Domian\proInstute.Domian.csproj", "{E6E61F70-82B7-4621-988D-EC290BD78795}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proInstute.Domian", "proInstute.Domian\proInstute.Domian.csproj", "{E6E61F70-82B7-4621-988D-EC290BD78795}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proInstute.Application", "proInstute.Application\proInstute.Application.csproj", "{27132F30-A8B4-4381-B98E-1019DDC9E9CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proInstute.Application", "proInstute.Application\proInstute.Application.csproj", "{27132F30-A8B4-4381-B98E-1019DDC9E9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proInstute.Persistence", "proInstute.Persistence\proInstute.Persistence.csproj", "{CBCAA54E-7794-46BF-9623-D9AEECFB96B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proInstute.Persistence", "proInstute.Persistence\proInstute.Persistence.csproj", "{CBCAA54E-7794-46BF-9623-D9AEECFB96B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proInstute.Web", "proInstute.Web\proInstute.Web.csproj", "{C7C86F70-9158-4EAE-9CC3-187A72792633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proInstute.Web", "proInstute.Web\proInstute.Web.csproj", "{C7C86F70-9158-4EAE-9CC3-187A72792633}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proInstute.Api", "proInstute.Api\proInstute.Api.csproj", "{E39514EF-B464-43CA-B741-0ADE915C94BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "proInstute.Api", "proInstute.Api\proInstute.Api.csproj", "{E39514EF-B464-43CA-B741-0ADE915C94BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

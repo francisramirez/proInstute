@@ -23,11 +23,11 @@ namespace proInstute.Persistence.Interfaces
         Task<DataResult<CourseModel>> GetCourseByTitle(string title);
 
         /// <summary>
-        /// Get all courses by department name
+        /// Get Courses by department
         /// </summary>
-        /// <param name="departmentName">Department of course</param>
-        /// <returns></returns>
-        Task<DataResult<CourseModel>> GetCourseByName(string departmentName);
+        /// <param name="departmentId">departmentId</param>
+        /// <returns>CourseModel</returns>
+        Task<DataResult<List<CourseModel>>> GetCourseByDepartment(int departmentId);
     }
 
 }

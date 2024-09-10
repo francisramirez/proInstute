@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -27,19 +28,103 @@ namespace proInstute.Persistence.Repositories
             this.configuration = configuration;
         }
 
-        public Task<DataResult<CourseModel>> GetCourseByName(string departmentName)
+        public async Task<DataResult<List<CourseModel>>> GetCourseByDepartment(int departmentId)
         {
-            throw new NotImplementedException();
+            DataResult<List<CourseModel>> result = new DataResult<List<CourseModel>>();
+
+            try
+            {
+                var query = await (from course in this.instituteDb.Courses
+                                           join depto in this.instituteDb.Departments on course.DepartmentID equals depto.Id
+                                           where course.Deleted == false
+                                            && course.Id == departmentId
+                                           select new CourseModel()
+                                           {
+                                               CreationDate = course.CreationDate,
+                                               Title = course.Title,
+                                               Credits = course.Credits,
+                                               DepartmentId = depto.Id,
+                                               DepartmentName = depto.Name,
+                                               Id = depto.Id
+                                           }).ToListAsync();
+
+
+                result.Result = query;
+            }
+            catch (Exception ex)
+            {
+
+                result.Message = this.configuration["course:get_course_department_id"];
+                result.Success = false;
+                this.logger.LogError(this.configuration["course:get_course_department_id"], ex.ToString());
+            }
+            return result;
         }
 
-        public Task<DataResult<CourseModel>> GetCourseByTitle(string title)
+        public async Task<DataResult<CourseModel>> GetCourseByTitle(string title)
         {
-            throw new NotImplementedException();
+            DataResult<CourseModel> result = new DataResult<CourseModel>();
+            try
+            {
+                CourseModel? dato = await(from course in this.instituteDb.Courses
+                                          join depto in this.instituteDb.Departments on course.DepartmentID equals depto.Id
+                                          where course.Deleted == false
+                                           && course.Title == title
+                                          select new CourseModel()
+                                          {
+                                              CreationDate = course.CreationDate,
+                                              Title = course.Title,
+                                              Credits = course.Credits,
+                                              DepartmentId = depto.Id,
+                                              DepartmentName = depto.Name,
+                                              Id = depto.Id
+                                          }).FirstOrDefaultAsync();
+
+
+                result.Result = dato;
+            }
+            catch (Exception ex)
+            {
+
+                result.Message = this.configuration["course:get_course_name"];
+                result.Success = false;
+                this.logger.LogError(this.configuration["course:get_course_name"], ex.ToString());
+
+            }
+
+            return result;
         }
 
-        public Task<DataResult<List<CourseModel>>> GetCourses()
+        public async Task<DataResult<List<CourseModel>>> GetCourses()
         {
-            throw new NotImplementedException();
+            DataResult<List<CourseModel>> result = new DataResult<List<CourseModel>>();
+
+            try
+            {
+                var query = await(from course in this.instituteDb.Courses
+                                  join depto in this.instituteDb.Departments on course.DepartmentID equals depto.Id
+                                  where course.Deleted == false
+                                  select new CourseModel()
+                                  {
+                                      CreationDate = course.CreationDate,
+                                      Title = course.Title,
+                                      Credits = course.Credits,
+                                      DepartmentId = depto.Id,
+                                      DepartmentName = depto.Name,
+                                      Id = depto.Id
+                                  }).ToListAsync();
+
+
+                result.Result = query;
+            }
+            catch (Exception ex)
+            {
+
+                result.Message = this.configuration["course:get_courses"];
+                result.Success = false;
+                this.logger.LogError(this.configuration["course:get_courses"], ex.ToString());
+            }
+            return result;
         }
         public override Task<bool> Save(Course entity)
         {
