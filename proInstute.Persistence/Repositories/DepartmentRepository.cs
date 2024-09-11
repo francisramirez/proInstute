@@ -65,6 +65,13 @@ namespace proInstute.Persistence.Repositories
                                                        .SingleOrDefaultAsync(depto => depto.Name == name
                                                                              && depto.Deleted == false);
 
+                if (department is null) 
+                {
+                    result.Message = "El departamento no se encuentra registrado o fue eliminado.";
+                    result.Success = false;
+                    return result;
+                }
+
                 result.Result = new DepartmentModel()
                 {
                     DepartmentId = department.Id,
@@ -134,7 +141,16 @@ namespace proInstute.Persistence.Repositories
                     throw new DepartmentDataException(this.configuration["department:start_date_is_null"]);
 
 
-                result = await base.Update(entity);
+                Department? departmentToUpdate = this.instituteDb.Departments.Find(entity.Id);
+
+                departmentToUpdate.Name = entity.Name;
+                departmentToUpdate.StartDate = entity.StartDate;
+                departmentToUpdate.UserMod = entity.UserMod;
+                departmentToUpdate.ModifyDate = entity.ModifyDate;
+                departmentToUpdate.Budget = entity.Budget;
+                departmentToUpdate.Administrator = entity.Administrator;
+                
+                result = await base.Update(departmentToUpdate);
 
             }
             catch (Exception ex)

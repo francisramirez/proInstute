@@ -64,6 +64,7 @@ namespace proInstute.Persistence.Repository
             {
                 _dbSet.Add(entity);
                 await _dbContext.SaveChangesAsync();
+                result = true;
             }
             catch (Exception ex)
             {
@@ -79,6 +80,7 @@ namespace proInstute.Persistence.Repository
             {
                 _dbSet.Update(entity);
                 await _dbContext.SaveChangesAsync();
+                result = true;
             }
             catch (Exception ex)
             {
