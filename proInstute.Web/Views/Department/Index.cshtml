@@ -1,0 +1,57 @@
+﻿@model proInstute.Domian.Models.DataResult<List<proInstute.Persistence.Models.Department.DepartmentModel>>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Departments</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@if (!Model.Success)
+{
+   <span class="alert-danger">@Model.Message</span>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               DepartmentId
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Budget
+            </th>
+            <th>
+               StartDate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Result)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DepartmentId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DepartmentId })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

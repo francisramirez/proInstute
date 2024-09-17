@@ -35,6 +35,7 @@ namespace proInstute.Persistence.Repositories
             {
                 var departments = await (from depto in this.instituteDb.Departments
                                    where depto.Deleted == false
+                                   orderby depto.CreationDate descending
                                    select new DepartmentModel
                                    {
                                        DepartmentId = depto.Id,
